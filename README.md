@@ -5,3 +5,31 @@ A challenge faced by Data scientists is the strict timeline and tough schedules.
 
 For classification tasks, the metrics has been selected as 'roc_auc' while that for regression tasks is 'r2' score.
 
+#### Tech Stack used
+Front-end : HTML, CSS, Bootstrap\
+Backend : Django
+
+ ## Screenshots
+ ##### Homepage
+ ![](screenshots/homepage.png)
+ 
+ ##### Upload csv file and choose type of task
+ ![](screenshots/analyse.png)
+ 
+ ##### Heatmap + Auto selection of features
+ ![](screenshots/heatmap.png)
+ 
+  ##### Comparative performance of all models
+ ![](screenshots/performance.png)
+ 
+   ##### Comparative graph
+ ![](screenshots/graph.png)
+ 
+   ##### Selection of best model
+ ![](screenshots/best_model.png)
+ 
+   ##### Contact Us
+ ![](screenshots/contact.png)
+ 
+ *For more images of the website checkout the screenshots folder.*
+
