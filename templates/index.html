@@ -1,0 +1,172 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+ <title>AUTO-ML</title>
+ <script type="text/javascript">
+
+    function showImage(){
+        document.getElementById('loadingImage').style.visibility="visible";
+    }
+    </script>
+ <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+<script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header class="site-header clearfix">
+ <nav>
+  <div class="logo">
+   <h1><b><i class="far fa-chart-bar"></i>  AUTO-ML</b></h1>
+  </div>
+  <div class="menu"> 
+   <ul>
+    <li><a href="">Home</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#about">About Us</a></li>
+    <li><a href="#contact">Contact Us</a></li>
+   </ul>
+  </div>
+ </nav>
+ <section>
+  <div class="leftside"> 
+   <img src="{% static 'images/graph2.gif' %}" class="ml-3" height="400">
+  </div>
+  <div class="rightside"> 
+   <h1 style="font-family: 'Open Sans', sans-serif;">GET READY TO SEE THE COMPLETE ANALYSIS FOR YOUR DATASET.</h1>
+   <p>  Get the analysis of your data done in just couple of minutes.   </p>
+   <button><a class="explore" href="#services">Analyze</a></button>
+  </div>
+  
+ </section>
+
+</header>
+
+
+
+<div id="about" class="container pt-3 pb-5 mt-3 mb-5">
+  <center>
+    <h1 class="pb-5"><b>ABOUT</b></h1>
+  <div class="row">
+    <div class="col-lg-6 col-md-6 col-sm-12">
+      <h2 style="margin-left: 0px;">What is AUTO-ML?</h2>
+      <p>Data Science is an inter-disciplinary field that uses
+scientific methods, processes, algorithms and systems to extract
+knowledge and insights from many structural and unstructured
+data. Data science is related to data mining, machine learning
+and big data. Data science is a concept to unify statistics,
+data analysis and their related methods in order to understand
+and analyze actual phenomena with data. It uses techniques
+and theories drawn from many fields within the context of
+mathematics, statistics, computer science, domain knowledge
+and information science.</p>
+      <p>A challenge faced by Data scientists
+is the strict timeline and tough schedules. This makes way for
+the scope of an application that can work as an auto-ML app
+and do most of the tasks by itself and yet, involve the data
+scientist at each step for modifications. This paper describes
+an approach with some applications of the web-app that is a
+demo to the whole idea proposed above. This web-application
+plots correlation matrices of features that lays a foundation
+for auto-feature selection and then trains the models over the
+data-set using a predefined template that, plots a comparison
+table of the models and performs automated model training
+and provides the best model fit to make predictions.</p>
+<p>For classification tasks, the metrics has been selected as 'roc_auc' while that for regression tasks is 'r2' score.</p>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-12">
+            <img src="{% static 'images/graph1.gif' %}" height="400px" width="500px"><br><br><br>
+            <button><a class="explore" href="{% url 'aboutus' %}" >Know more about the creators!</a></button><br>
+    </div>
+  </div>
+  </center>
+</div>
+
+
+<div id="services" class="container-fluid site-header pt-5 pb-5 mt-5 mb-5">
+  <div class="container anainner">
+  <center>
+    <h1 class="analyze pb-5"><b>ANALYZE</b></h1></center>
+  <div class="row">
+    <div class="anaimg col-lg-6 col-md-6 col-sm-12">
+      <img src="{% static 'images/analyze.gif' %}" height="400px" width="600px">
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-12">
+      
+      
+      <form action="{% url 'output' %}" method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="mb-3">
+        <label for="formFile" class="form-label">Default file input example</label>
+        <input class="form-control" type="file" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" id="formFile" name="document" required>
+      </div>
+      <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Select type of task</label><br>
+        <input type="radio"  id="reg" name="task" value="regression" >
+        <label for="reg">Regression</label><br>
+        <input type="radio" id="class" name="task" value="classification">
+        <label for="class">Classification</label><br>
+      </div>
+<div class="mb-3">
+  <label for="exampleFormControlInput1" class="form-label">Enter corr(range from 0-1)</label>
+  <input type="text" class="form-control" id="exampleFormControlInput1" name="corr" placeholder="" required>
+</div>
+
+<br>
+<button class="" type="submit" onclick="showImage();">SUBMIT</button>
+<img id="loadingImage" src="{% static 'images/loading4.gif' %}" style="visibility:hidden" height="80" width="80">
+    </form>
+    </div>
+    </div>
+  </div>
+    </div>
+
+
+
+<div id="contact" class="container pt-3 pb-5 mt-3 mb-5">
+  <center>
+    <h1 class="pb-5"><b>CONTACT US</b></h1>
+    </center>
+  <div class="row">
+    <div class="col-lg-3 col-md-3">
+      <h1><i class="far fa-chart-bar"></i>  AUTO-ML</h1>
+      <a href="" style="padding: 5px; font-size: 20px;" class="contactimg"><i class="fab fa-linkedin-in"></i></a>
+      <a href="" style="padding: 5px; font-size: 20px;" class="contactimg"><i class="fab fa-github"></i></a>
+        
+
+    </div>
+    <div class="col-lg-3 col-md-3">
+      <h3>Sagnik Mukherjee</h3>
+      <h6>B.E (Electrical Engineering) | M.Tech (Electronics and Telecommunication Engineering) | Data Scientist | Machine Learning Backend developer for the project</h6>
+      <a href="" class="linked"><i class="fas fa-envelope" style="padding:0.5%"></i>  mukherjeesagnik2@gmail.com</a><br>
+      <a href=" https://www.linkedin.com/in/sagnik-mukherjee-2901661b7/" class="linked" ><i class="fab fa-linkedin-in" style="padding:0.5%"></i>  sagnik-mukherjee</a><br>
+      <a href="https://github.com/sagnik0712mukherjee" class="linked"><i class="fab fa-github" style="padding:0.5%"></i>  sagnik0712mukherjee</a><br>
+      
+    </div>
+    <div class="col-lg-3 col-md-3">
+      <h3>Sejal Budhani</h3>
+      <h6>BE (Computer Engineering) | Frontend developer for the project</h6>
+      <a href="" class="linked"><i class="fas fa-envelope" style="padding:0.5%"></i>  sejalbudhani@gmail.com</a><br>
+      <a href="https://www.linkedin.com/in/sejal-budhani-6841b5204" class="linked" ><i class="fab fa-linkedin-in" style="padding:0.5%"></i>  sejal-budhani</a><br>
+      <a href="https://www.github.com/sejal-123" class="linked"><i class="fab fa-github" style="padding:0.5%"></i>  sejal-123</a><br>
+      
+    </div>
+
+    <div class="col-lg-3 col-md-3">
+      <h3>Dishita Ashar</h3>
+      <h6>TE (Information Technology Engineering) | Web developer for the project</h6>
+      <a href="" class="linked"><i class="fas fa-envelope" style="padding:0.5%"></i>  dishita108@gmail.com</a><br>
+      <a href="https://www.linkedin.com/in/dishita-ashar" class="linked"><i class="fab fa-linkedin-in" style="padding:0.5%"></i>  dishita-ashar</a><br>
+      <a href="https://github.com/dishita108" class="linked"><i class="fab fa-github" style="padding:0.5%"></i>  dishita-108</a><br>
+      
+    </div>
+</div>
+</div>
+</body>
+</html>

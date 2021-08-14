@@ -1,0 +1,184 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+ <title>AUTO-ML</title>
+ <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+<script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&display=swap" rel="stylesheet">
+ <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+</head>
+<body>
+
+<header>
+  <div class="site-header-new clearfix">
+ <nav>
+  <div class="logo">
+   <h1><b><i class="far fa-chart-bar"></i>  AUTO-ML</b></h1>
+  </div>
+  <div class="menu"> 
+   <ul>
+    <li><a href="{% url 'index' %}">Home</a></li>
+    <li><a href="{% url 'aboutus' %}">About Us</a></li>
+    <li><a href="#graph">Graph</a></li>
+    <li><a href="#result">Result</a></li>
+    <li><a href="#contact">Contact Us</a></li>
+   </ul>
+  </div>
+ </nav>
+ <!--Dataset-->
+  
+  <div class="container pt-3 pb-3" data-aos="fade-right"><center>
+  <h1 style="color:white;">Let's see the data description...</h1><br>
+  <div style="color:white">
+    <button><a class="explore" href="{% static '/data_description.csv' %}" download>Download</a></button> 
+  </center>
+  </div>
+  </div>
+</header>
+
+ <!---------->
+<!--Heatmap-->
+ <div class="container pt-3 pb-5" id = "graph" style="background-color:white;" data-aos="fade-left"><center>
+
+  <h1>Heat map has been generated...</h1><br>
+  <img src = "{% static 'images/heatmap.png' %}" class="grimg" style="border:3px solid #555; padding:5px;" height="500" width="500">  <br><br>
+  <h4>Data-set reduced to selected features based on selected correlation threshold...</h4>
+  <h4>The input and output features have been defined...</h4>
+  {% for i in c %}
+  <h5>{{i}}</h5>
+  {% endfor %}
+  <br>
+  <button><a class="explore" href="{% static 'images/heatmap.png' %}" download>Download</a></button><br>
+  <h5>The best model is to be selected and then trained...</h5>
+  
+  </center>
+  </div>
+ <!--------->
+ <!-- Table of results-->
+ <!--class="container pt-3 pb-3"-->
+ <div class="site-header-next clearfix">
+ <div class="container pt-3 pb-3" data-aos="fade-right"><center>
+  <br>
+ <h1 style="color:white;">Feature : No of NAN values</h1><br>
+ {% for d in data7 %}
+ <h6  style="color:white;">{{d}}</h6>
+ {% endfor %}
+ <br><br>
+ <h1 style="color:white;">Let us compare the models' performance...</h1><br>
+ <table class="table table-striped table-hover pt-3 pb-3"  style="color:white;">
+  <thead>
+    <tr>
+      <th scope="col">Index</th>
+      <th scope="col">Model Name</th>
+      <th scope="col">Model Score</th>
+      <th scope="col">Best Estimator</th>
+      <th scope="col">Best Re-fit time</th>
+    </tr>
+  </thead>
+  
+  
+{% for i, j, k in temp %}
+<tr class="trow"  style="color:white;">
+<td>{{i|slice:":1"|add:"1" }}</td>
+<td>{{i|slice:"2:-11"}}</td>
+<td>{{i|slice:"-11:"}}</td>
+<td>{{k|slice:"2:-11"}}</td>
+<td>{{k|slice:"-11:"}}</td>
+<tr>
+{% endfor %}
+
+
+</table>
+
+</center>
+</div>
+</div>
+<!---->
+
+
+
+<div class="container pt-3 pb-5" id = "graph" style="background-color:white;" data-aos="fade-left"><center>
+<h1>Comparative Graph of models.</h1><br>
+<img src = "{% static 'images/graph.png' %}" class="grimg" style="border:3px solid #555; padding:5px;" height="650" width="750"><br><br>
+<button><a class="explore" href="{% static 'images/graph.png' %}" download>Download</a></button>  
+</center>
+</div>
+
+<div class="site-header-next pt-5" id="result" data-aos="fade-right">
+<center>
+<div class="container">
+<div class="row pt-5" >
+<div class="col-lg-6 col-md-12 col-sm-12 pt-5" >
+<h6 style="color:white;">{{data4}}</h6>
+<h6 style="color:white;">{{data5}}</h6>
+</div>
+
+<div class="col-lg-6 col-md-12 col-sm-12" data-aos="fade-right">
+<img src="{% static 'images/procedure.gif' %}" height="450" width="550">
+</div>
+</div>
+</div>
+</center>
+
+<div class="container pt-5 pb-5 mt-3 mb-3 wrapper" style="padding:5px; color:white;" data-aos="fade-left">
+<center>
+<h3><b>{{data6}}</b></h3>
+<h5 class="typing-demo">Click the download button below to download the pkl file :)</h5><br>
+<button><a class="explore" href="{% static '/model_pickle' %}" download>Download</a></button> 
+</center>
+</div>
+</div>
+
+
+<div id="contact" class="container pt-3 pb-5 mt-3 mb-5" id="contact">
+  <center>
+    <h1 class="pb-5"><b>CONTACT US</b></h1>
+    </center>
+  <div class="row">
+    <div class="col-lg-3 col-md-3">
+      <h1><i class="far fa-chart-bar"></i>  AUTO-ML</h1>
+      <a href="" style="padding: 5px; font-size: 20px;" class="contactimg"><i class="fab fa-linkedin-in"></i></a>
+      <a href="" style="padding: 5px; font-size: 20px;" class="contactimg"><i class="fab fa-github"></i></a>
+    </div>
+    <div class="col-lg-3 col-md-3">
+      <h3>Sagnik Mukherjee</h3>
+        <h6>B.E (Electrical Engineering) | M.Tech (Electronics and Telecommunication Engineering) | Data Scientist | Machine Learning Backend developer for the project</h6>
+      <a href="" class="linked"><i class="fas fa-envelope" style="padding:0.5%"></i>  mukherjeesagnik2@gmail.com</a><br>
+      <a href=" https://www.linkedin.com/in/sagnik-mukherjee-2901661b7/" class="linked" ><i class="fab fa-linkedin-in" style="padding:0.5%"></i>  sagnik-mukherjee</a><br>
+      <a href="https://github.com/sagnik0712mukherjee" class="linked"><i class="fab fa-github" style="padding:0.5%"></i>  sagnik0712mukherjee</a><br>
+    </div>
+    <div class="col-lg-3 col-md-3">
+      <h3>Sejal Budhani</h3>
+      <h6>BE (Computer Engineering) | Frontend developer for the project</h6>
+      <a href="" class="linked"><i class="fas fa-envelope" style="padding:0.5%"></i>  sejalbudhani@gmail.com</a><br>
+      <a href="https://www.linkedin.com/in/sejal-budhani-6841b5204" class="linked"><i class="fab fa-linkedin-in" style="padding:0.5%"></i>  sejal-budhani</a><br>
+      <a href="https://www.github.com/sejal-123" class="linked"><i class="fab fa-github" style="padding:0.5%"></i>  sejal-123</a><br> 
+    </div>
+    <div class="col-lg-3 col-md-3">
+      <h3>Dishita Ashar</h3>
+      <h6>TE (Information Technology Engineering) | Web developer for the project</h6>
+      <a href="" class="linked"><i class="fas fa-envelope" style="padding:0.5%"></i>  dishita108@gmail.com</a><br>
+      <a href="https://www.linkedin.com/in/dishita-ashar" class="linked"><i class="fab fa-linkedin-in" style="padding:0.5%"></i>  dishita-ashar</a><br>
+      <a href="https://www.github.com/dishita108" class="linked"><i class="fab fa-github" style="padding:0.5%"></i>  dishita-108</a><br>
+      
+    </div>
+</div>
+</div>
+
+ <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      offset: 250,
+      duration: 1300,
+    });
+  </script>
+ </body>
+
+ </html>
